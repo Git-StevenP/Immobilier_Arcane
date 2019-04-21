@@ -1,0 +1,32 @@
+{% extends "design.html" %}
+{% block body %}
+<html>
+<body>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    <nav class="row">
+        <div class="">
+            <div class="navbar-header col-sm-2">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                </button>
+                <a class="navbar-brand" href="#">Arcane - Immobilier</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/register">S'inscrire</a></li>
+                    <li><a href="/deco">Déconnexion</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="row">
+        {% block content %}{% endblock %}
+    </div>
+
+</body>
+
+</html>
+{% endblock %}
