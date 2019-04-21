@@ -3,7 +3,7 @@ import pymongo
 from flask import Flask, render_template, url_for, request, session, redirect, flash
 
 import config
-from utils import bdd
+from utils import bdd, forms
 
 # Initialisation et chargment du fichier Config
 app = Flask(__name__)
@@ -17,19 +17,39 @@ mongo = bdd.MongoDB("Arcane_Immobilier")
 def index():
     if 'username' in session:
 
-        return render_template('home.html')
+        return render_template('home.html', username = session['username'])
 
     return render_template('index.html')
+
+@app.route('/profile', methods=['POST', 'GET'])
+def profile():
+    if 'username' in session:
+
+        users = mongo.db.users
+
+        profileForm = forms.ProfileEditor(request.form)
+
+        if request.method == 'POST':
+            last_name = profileForm.last_name.data
+            first_name = profileForm.first_name.data
+            birth_date = profileForm.birth_date.data
+            users.update({'username' : session['username']}, {'$set': { 'last_name': last_name, 'first_name' : first_name, 'birth_date' : birth_date } })
+            return render_template('home.html', username = session['username'])
+
+        return render_template('profile.html', username = session['username'], profileForm = profileForm)
+
+    return render_template('index.html')
+
 
 # Route d'inscription des utilisateurs
 @app.route('/register', methods=['POST', 'GET'])
 def register():
     if request.method == 'POST':
         users = mongo.db.users
-        existing_user = users.find_one({'name' : request.form['username']})
+        existing_user = users.find_one({'username' : request.form['username']})
 
         if existing_user is None:
-            users.insert({'name' : request.form['username'], 'password' : request.form['pass']})
+            users.insert({'username' : request.form['username'], 'password' : request.form['pass']})
             session['username'] = request.form['username']
             return redirect('/')
 
@@ -41,7 +61,7 @@ def register():
 @app.route('/login',methods=['POST'])
 def login():
     users = mongo.db.users
-    login_user = users.find_one({'name' : request.form['username']})
+    login_user = users.find_one({'username' : request.form['username']})
 
     if login_user :
         if (request.form['pass'].encode('utf-8') == login_user['password'].encode('utf-8')):
