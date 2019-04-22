@@ -60,7 +60,6 @@ def add():
 
         number_collection = mongo.db.room_number
         room_number = number_collection.find_one()['number']
-        print(room_number)
 
         roomsFieldList = []
         roomsDict = {}
@@ -81,6 +80,9 @@ def add():
                 roomsDict['room_' + str(elt)] = {"room_type" : str(room_type_input), "room_area" : str(room_area_input), "room_furniture" : room_furniture_input}
             else:
                 roomsDict['room_' + str(elt+1)] = {"room_type" : str(room_type_input), "room_area" : str(room_area_input), "room_furniture" : room_furniture_input}
+            
+            roomsDict['room_number'] = room_number
+
 
         if request.method == 'POST':
 
@@ -105,6 +107,16 @@ def add():
                 return render_template('home.html', username = session['username'])
 
         return render_template('add.html', username = session['username'], form = realEstateForm, roomsFieldList = roomsFieldList)
+
+    return render_template('index.html')
+
+@app.route('/modify/<real_estate>', methods=['POST', 'GET'])
+def modify(real_estate):
+    if 'username' in session:
+
+        
+
+        return render_template('modify.html', username = session['username'])
 
     return render_template('index.html')
 

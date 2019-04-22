@@ -2,8 +2,9 @@
 {% block content %}
 
 <div class="hist_container">
-	{% for real_estate in all_real_estate %}
-		<div class="field real_estate">
+    {% for real_estate in all_real_estate %}
+    <a href='/modify/{{real_estate.name}}'>
+        <div class="field real_estate">
             <h1><strong>Nom : {{real_estate.name}} Description : {{real_estate.description}}</strong></h1>
             {% for room in real_estate.rooms %}
             <div>
@@ -14,6 +15,7 @@
             {% endfor %}
             <h2>Type de bien : {{real_estate.type}} Ville : {{real_estate.city}} Propriétaire : {{real_estate.owner}}</h2>
 		</div>
+    </a>
 	{% endfor %}
 </div>
 
