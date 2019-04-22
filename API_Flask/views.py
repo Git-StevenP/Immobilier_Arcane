@@ -17,6 +17,9 @@ mongo = bdd.MongoDB("Arcane_Immobilier")
 def index():
     if 'username' in session:
 
+        mongo.db.room_number.drop()
+        mongo.insert_one('room_number', {'number' : 1})
+
         return render_template('home.html', username = session['username'])
 
     return render_template('index.html')
@@ -37,6 +40,62 @@ def profile():
             return render_template('home.html', username = session['username'])
 
         return render_template('profile.html', username = session['username'], profileForm = profileForm)
+
+    return render_template('index.html')
+
+@app.route('/add', methods=['POST', 'GET'])
+def add():
+    if 'username' in session:
+
+        realEstateForm = forms.RealEstateEditor(request.form)
+
+        number_collection = mongo.db.room_number
+        room_number = number_collection.find_one()['number']
+        print(room_number)
+
+        roomsFieldList = []
+        roomsDict = {}
+
+        for elt in range(room_number):
+
+            room_type_field = getattr(realEstateForm, 'room_type' + str(elt))
+            room_area_field = getattr(realEstateForm, 'room_area' + str(elt))
+            room_furniture_field = getattr(realEstateForm, 'room_furniture' + str(elt))
+
+            roomsFieldList.append({'room_type' : room_type_field, 'room_area' : room_area_field, 'room_furniture' : room_furniture_field})
+
+            room_type_input = room_type_field.data
+            room_area_input = room_area_field.data
+            room_furniture_input = room_furniture_field.data
+
+            if str(room_type_input) not in roomsDict:
+                roomsDict[str(room_type_input)] = {"room_area" : str(room_area_input), "room_furniture" : room_furniture_input}
+            else:
+                roomsDict[str(room_type_input) + str(elt)] = {"room_area" : str(room_area_input), "room_furniture" : room_furniture_input}
+
+        if request.method == 'POST':
+
+            if request.form.get('ajouter'):
+                number_collection.update_many({}, {'$set' : {'number' :  room_number + 1}})
+
+                return redirect(url_for('add'))
+
+            if request.form.get('modifier'):
+
+                result = {}
+
+                result['name'] = realEstateForm.name.data
+                result["description"] = realEstateForm.description.data
+                result["type"] = realEstateForm.real_estate_type.data
+                result['city'] = realEstateForm.city.data
+                result['rooms'] = roomsDict
+                result['owner'] = realEstateForm.owner.data
+
+                mongo.insert_one('biens_immobilier', result)
+
+                return render_template('home.html', username = session['username'])
+
+        return render_template('add.html', username = session['username'], form = realEstateForm, roomsFieldList = roomsFieldList)
 
     return render_template('index.html')
 
