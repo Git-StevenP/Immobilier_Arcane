@@ -20,7 +20,16 @@ def index():
         mongo.db.room_number.drop()
         mongo.insert_one('room_number', {'number' : 1})
 
-        return render_template('home.html', username = session['username'])
+        real_estate_list = mongo.db.biens_immobilier.find()
+        all_real_estate = []
+        for real_estate in real_estate_list:
+            all_rooms = []
+            for key in real_estate['rooms']:
+                all_rooms.append(real_estate['rooms'][key])
+            all_real_estate.append({'name' : real_estate['name'], 'description' : real_estate['description'], 'type' : real_estate['type'], 'city' : real_estate['city'], 'owner' : real_estate['owner'], 'rooms' : all_rooms })
+        print(all_real_estate)
+
+        return render_template('home.html', username = session['username'], all_real_estate = all_real_estate)
 
     return render_template('index.html')
 
@@ -68,10 +77,10 @@ def add():
             room_area_input = room_area_field.data
             room_furniture_input = room_furniture_field.data
 
-            if str(room_type_input) not in roomsDict:
-                roomsDict[str(room_type_input)] = {"room_area" : str(room_area_input), "room_furniture" : room_furniture_input}
+            if 'room_' + str(elt) not in roomsDict:
+                roomsDict['room_' + str(elt)] = {"room_type" : str(room_type_input), "room_area" : str(room_area_input), "room_furniture" : room_furniture_input}
             else:
-                roomsDict[str(room_type_input) + str(elt)] = {"room_area" : str(room_area_input), "room_furniture" : room_furniture_input}
+                roomsDict['room_' + str(elt+1)] = {"room_type" : str(room_type_input), "room_area" : str(room_area_input), "room_furniture" : room_furniture_input}
 
         if request.method == 'POST':
 
