@@ -33,8 +33,9 @@ def index():
             for key in real_estate['rooms']:
                 if key != 'room_number':
                     all_rooms.append(real_estate['rooms'][key])
-            all_real_estate.append({'name' : real_estate['name'], 'description' : real_estate['description'], 'type' : real_estate['type'], 'city' : real_estate['city'], 'owner' : real_estate['owner'], 'rooms' : all_rooms })
+            all_real_estate.append({'name' : real_estate['name'], 'description' : real_estate['description'], 'type' : real_estate['type'], 'city' : real_estate['city'], 'owner' : real_estate['owner'], 'rooms' : all_rooms , 'property' : real_estate['property']})
         print(all_real_estate)
+        print(session['username'])
 
         return render_template('home.html', username = session['username'], form=searchForm, all_real_estate = all_real_estate)
 
@@ -47,13 +48,14 @@ def profile():
         users = mongo.db.users
 
         profileForm = forms.ProfileEditor(request.form)
+        searchForm = forms.RealEstateSearch(request.form)
 
         if request.method == 'POST':
             last_name = profileForm.last_name.data
             first_name = profileForm.first_name.data
             birth_date = profileForm.birth_date.data
             users.update({'username' : session['username']}, {'$set': { 'last_name': last_name, 'first_name' : first_name, 'birth_date' : birth_date } })
-            return render_template('home.html', username = session['username'])
+            return render_template('home.html', username = session['username'], form=searchForm)
 
         return render_template('profile.html', username = session['username'], profileForm = profileForm)
 
@@ -64,6 +66,7 @@ def add():
     if 'username' in session:
 
         realEstateForm = forms.RealEstateEditor(request.form)
+        searchForm = forms.RealEstateSearch(request.form)
 
         number_collection = mongo.db.room_number
         room_number = number_collection.find_one()['number']
@@ -108,10 +111,11 @@ def add():
                 result['city'] = realEstateForm.city.data
                 result['rooms'] = roomsDict
                 result['owner'] = realEstateForm.owner.data
+                result['property'] = session['username']
 
                 mongo.insert_one('biens_immobilier', result)
 
-                return render_template('home.html', username = session['username'])
+                return render_template('home.html', username = session['username'], form=searchForm)
 
         return render_template('add.html', username = session['username'], form = realEstateForm, roomsFieldList = roomsFieldList)
 
@@ -122,6 +126,7 @@ def modify(real_estate):
     if 'username' in session:
 
         realEstateForm = forms.RealEstateEditor(request.form)
+        searchForm = forms.RealEstateSearch(request.form)
 
         real_estate_collection = mongo.db.biens_immobilier
         room_number = real_estate_collection.find_one({'name' : real_estate})['rooms']['room_number']
@@ -167,7 +172,7 @@ def modify(real_estate):
                 real_estate_collection.update({'name' : real_estate}, {'$set' : {'rooms' :  roomsDict}})
                 real_estate_collection.update({'name' : real_estate}, {'$set' : {'owner' :  realEstateForm.owner.data}})
 
-                return render_template('home.html', username = session['username'])
+                return render_template('home.html', username = session['username'], form=searchForm)
 
         return render_template('modify.html', username = session['username'], form = realEstateForm, roomsFieldList = roomsFieldList)
 
