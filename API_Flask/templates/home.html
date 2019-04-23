@@ -1,7 +1,18 @@
 {% extends "main.html" %}
 {% block content %}
 
-<div class="hist_container">
+<div class="row">
+    <form class="col-sm-12" action="" method="post" name="real_estate_search">
+        <div class="field">
+            {{form.search}}
+        </div>
+        <div class="field">
+            <input class="field" type=submit name='search' value=Search>
+        </div>
+    </form>
+</div>
+
+<div class="row">
     {% for real_estate in all_real_estate %}
     <a href='/modify/{{real_estate.name}}'>
         <div class="field real_estate">

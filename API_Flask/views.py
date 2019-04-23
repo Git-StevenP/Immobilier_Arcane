@@ -20,7 +20,13 @@ def index():
         mongo.db.room_number.drop()
         mongo.insert_one('room_number', {'number' : 1})
 
-        real_estate_list = mongo.db.biens_immobilier.find()
+        searchForm = forms.RealEstateSearch(request.form)
+
+        if request.method == 'POST':
+            real_estate_list = mongo.db.biens_immobilier.find({'city' : searchForm.search.data})
+        else:
+            real_estate_list = mongo.db.biens_immobilier.find()
+
         all_real_estate = []
         for real_estate in real_estate_list:
             all_rooms = []
@@ -30,7 +36,7 @@ def index():
             all_real_estate.append({'name' : real_estate['name'], 'description' : real_estate['description'], 'type' : real_estate['type'], 'city' : real_estate['city'], 'owner' : real_estate['owner'], 'rooms' : all_rooms })
         print(all_real_estate)
 
-        return render_template('home.html', username = session['username'], all_real_estate = all_real_estate)
+        return render_template('home.html', username = session['username'], form=searchForm, all_real_estate = all_real_estate)
 
     return render_template('index.html')
 

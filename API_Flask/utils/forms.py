@@ -21,3 +21,6 @@ class RealEstateEditor(Form):
         exec(area_name + " = DecimalField('', render_kw={'placeholder': 'Surface (en m²)'})")
         exec(furniture_name + " = SelectField(u'Meublé', choices=[('oui', 'Oui'), ('non', 'Non')])")
     owner = StringField('', render_kw={"placeholder": "Propriétaire"})
+
+class RealEstateSearch(Form):
+    search = StringField('', render_kw={"placeholder": "Chercher par ville..."})
