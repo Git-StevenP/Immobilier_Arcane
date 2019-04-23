@@ -101,6 +101,11 @@ def add():
 
                 return redirect(url_for('add'))
 
+            if request.form.get('retirer'):
+                number_collection.update_many({}, {'$set' : {'number' :  room_number - 1}})
+
+                return redirect(url_for('add'))
+
             if request.form.get('modifier'):
 
                 result = {}
@@ -157,6 +162,11 @@ def modify(real_estate):
 
             if request.form.get('ajouter'):
                 real_estate_collection.update({'name' : real_estate}, {'$set' : {'rooms' : {'room_number' :  room_number + 1}}})
+
+                return redirect(url_for('modify', real_estate=real_estate))
+
+            if request.form.get('retirer'):
+                real_estate_collection.update({'name' : real_estate}, {'$set' : {'rooms' : {'room_number' :  room_number - 1}}})
 
                 return redirect(url_for('modify', real_estate=real_estate))
 

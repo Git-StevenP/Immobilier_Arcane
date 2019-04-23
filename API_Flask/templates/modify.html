@@ -16,7 +16,7 @@
             {{ form.city }}
         </div>
         {% for roomField in roomsFieldList %}
-        <p class="field">Chambre n°{{ roomsFieldList.index(roomField)+1 }}</p>
+        <p class="field">Pièce n°{{ roomsFieldList.index(roomField)+1 }}</p>
         <div class="field">
             {{ roomField.room_type }}
         </div>
@@ -25,6 +25,9 @@
         </div>
         <div class="field">
             {{ roomField.room_furniture }}
+        </div>
+        <div class="field">
+            <input class="field" type='submit' name='retirer' value="Retirer">
         </div>
         {% endfor %}
         <div class="field">
