@@ -3,7 +3,39 @@
 
 <div class="row">
     <form class="col-sm-12" action="" method="post" name="real_estate_form">
-        
+        <div class="field">
+            {{ form.name }}
+        </div>
+        <div class="field">
+            {{ form.description }}
+        </div>
+        <div class="field">
+            {{ form.real_estate_type }}
+        </div>
+        <div class="field">
+            {{ form.city }}
+        </div>
+        {% for roomField in roomsFieldList %}
+        <p class="field">Chambre n°{{ roomsFieldList.index(roomField)+1 }}</p>
+        <div class="field">
+            {{ roomField.room_type }}
+        </div>
+        <div class="field">
+            {{ roomField.room_area }}
+        </div>
+        <div class="field">
+            {{ roomField.room_furniture }}
+        </div>
+        {% endfor %}
+        <div class="field">
+            <input class="field" type='submit' name='ajouter' value="Ajouter">
+        </div>
+        <div class="field">
+            {{ form.owner }}
+        </div>
+        <div class="field">
+            <input class="field" type=submit name='modifier' value=Modifier>
+        </div>
     </form>
 </div>
 

@@ -2,7 +2,7 @@ from pymongo import MongoClient
 
 class MongoDB():
     def __init__(self,dbname):
-        self.client = MongoClient()
+        self.client = MongoClient('localhost', 27017)
         self.db = self.client[dbname]
 
     def get_collection_name(self):

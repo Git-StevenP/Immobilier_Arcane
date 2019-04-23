@@ -25,7 +25,8 @@ def index():
         for real_estate in real_estate_list:
             all_rooms = []
             for key in real_estate['rooms']:
-                all_rooms.append(real_estate['rooms'][key])
+                if key != 'room_number':
+                    all_rooms.append(real_estate['rooms'][key])
             all_real_estate.append({'name' : real_estate['name'], 'description' : real_estate['description'], 'type' : real_estate['type'], 'city' : real_estate['city'], 'owner' : real_estate['owner'], 'rooms' : all_rooms })
         print(all_real_estate)
 
@@ -114,9 +115,55 @@ def add():
 def modify(real_estate):
     if 'username' in session:
 
-        
+        realEstateForm = forms.RealEstateEditor(request.form)
 
-        return render_template('modify.html', username = session['username'])
+        real_estate_collection = mongo.db.biens_immobilier
+        room_number = real_estate_collection.find_one({'name' : real_estate})['rooms']['room_number']
+
+        roomsFieldList = []
+        roomsDict = {}
+
+        for elt in range(room_number):
+
+            room_type_field = getattr(realEstateForm, 'room_type' + str(elt))
+            room_area_field = getattr(realEstateForm, 'room_area' + str(elt))
+            room_furniture_field = getattr(realEstateForm, 'room_furniture' + str(elt))
+
+            roomsFieldList.append({'room_type' : room_type_field, 'room_area' : room_area_field, 'room_furniture' : room_furniture_field})
+
+            room_type_input = room_type_field.data
+            room_area_input = room_area_field.data
+            room_furniture_input = room_furniture_field.data
+
+            if 'room_' + str(elt) not in roomsDict:
+                roomsDict['room_' + str(elt)] = {"room_type" : str(room_type_input), "room_area" : str(room_area_input), "room_furniture" : room_furniture_input}
+            else:
+                roomsDict['room_' + str(elt+1)] = {"room_type" : str(room_type_input), "room_area" : str(room_area_input), "room_furniture" : room_furniture_input}
+            
+            roomsDict['room_number'] = room_number
+        
+        if request.method == 'POST':
+
+            if request.form.get('ajouter'):
+                real_estate_collection.update({'name' : real_estate}, {'$set' : {'rooms' : {'room_number' :  room_number + 1}}})
+
+                return redirect(url_for('modify', real_estate=real_estate))
+
+            if request.form.get('modifier'):
+
+                if realEstateForm.name.data:
+                    real_estate_collection.update({'name' : real_estate}, {'$set' : {'name' :  realEstateForm.name.data}})
+                    real_estate = realEstateForm.name.data
+
+                real_estate_collection.update({'name' : real_estate}, {'$set' : {'description' :  realEstateForm.description.data}})
+                real_estate_collection.update({'name' : real_estate}, {'$set' : {'type' :  realEstateForm.real_estate_type.data}})
+                real_estate_collection.update({'name' : real_estate}, {'$set' : {'city' :  realEstateForm.city.data}})
+                real_estate_collection.update({'name' : real_estate}, {'$set' : {'rooms' :  roomsDict}})
+                real_estate_collection.update({'name' : real_estate}, {'$set' : {'owner' :  realEstateForm.owner.data}})
+
+                return render_template('home.html', username = session['username'])
+
+        return render_template('modify.html', username = session['username'], form = realEstateForm, roomsFieldList = roomsFieldList)
 
     return render_template('index.html')
 
