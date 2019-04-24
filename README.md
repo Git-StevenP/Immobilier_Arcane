@@ -15,7 +15,7 @@ Dans le cadre d’un projet de création d’une application web de gestion immo
     3.1 [Fonctionnalités](#fonctionnalités)
     3.2 [Page de connexion/inscription](#page-de-connexioninscription)
     3.3 [Page d'accueil](#page-daccueil)
-    3.4 [Page d'ajout d'un bien immobilier](#page-d'ajout-dun-bien-immobilier)
+    3.4 [Page d'ajout d'un bien immobilier](#page-dajout-dun-bien-immobilier)
     3.5 [Page de modification d'un bien immobilier](#page-de-modification-dun-bien-immobilier)
     3.6 [Page de modification du profil](#page-de-modification-du-profil)
 
