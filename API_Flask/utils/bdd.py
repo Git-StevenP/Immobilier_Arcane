@@ -55,5 +55,14 @@ class MongoDB():
         return result.distinct('_id')
 
     def update_real_estate(self, real_estate_name, attr_key, attr_to_update):
+        """Met à jour la base de données en fonction du nom du bien immobilier, et de l'attribut qu'il faut modifier.
+
+        Paramètres nommés :
+        self -- le base de données elle-même
+        real_estate_name -- le nom du bien immobilier
+        attr_key -- la clé associé à l'attribut devant être modifié
+        attr_to_update -- l'attribut devant être modifié
+        """
+
         real_estate_collection = self.db.biens_immobilier 
         real_estate_collection.update({'name' : real_estate_name}, {'$set' : {attr_key :  attr_to_update}})
