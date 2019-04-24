@@ -11,6 +11,8 @@ Dans le cadre d’un projet de création d’une application web de gestion immo
     1.1 [Prérequis](#prérequis)  
     1.2 [Installation et démarrage](#installation-et-démarrage)  
 2. [Technologies utilisées](#technologies-utilisées)
+    2.1 [Liste des Technologies](#liste-des-technologies)
+    2.2 [Architecture base de données MongoDB](#architecture-base-de-donnees-mongodb)
 3. [Guide utilisateur](#guide-utilisateur)  
     3.1 [Fonctionnalités](#fonctionnalités)
     3.2 [Page de connexion/inscription](#page-de-connexioninscription)
@@ -65,7 +67,27 @@ Lorsque l'exécution est terminée, cliquez sur le lien suivant : [http://127.0.
 
 ### Architecture base de données MongoDB
 
-![alt text](https://raw.githubusercontent.com/Git-StevenP/Arcane_Immobilier/master/doc/rooms.JPG)
+La base de données est composée de trois collections : users, biens_immobiliers et enfin room_number
+
+La première collection sert à stocker les différents utilisateurs de l'application à l'aide de leur nom de compte et de leur mot de passe. A noter que la fonctionnalité [lien](#page-de-modification-du-profil) permet d'ajouter des informations à cet utilisateur telles que son nom, son prénom, ou encore sa date de naissance.
+
+La deuxième collection sert à stocker les différents biens immobiliers présents dans l'application. Celle-ci est composée ainsi : 
+- name : le nom du bien immobilier
+- description : la description du bien immobilier
+- type : le type de bien immobilier (maison, appartement, villa)
+- city : la ville dans laquelle se situe le bien immobilier
+- rooms : les pièces et leurs différentes caractéristiques (détaillées plus bas)
+- owner : le propriétaire du bien immobilier
+- property : l'utilisateur ayant ajouté le bien immobilier sur la plateforme
+
+![](API_Flask/doc/real_estate.JPG)
+
+La partie comportant les pièces d'un bien est composée ainsi où où chaque pièce est composée de 3 variables :
+- room_type : le type de pièce (WC, bedroom, bathroom, garden...)
+- room_area : la surface de la pièce (en mètres carrés)
+- room_furniture : la pièce est meublée (oui ou non)
+
+![](API_Flask/doc/rooms.JPG)
 
 ## Guide utilisateur
 
