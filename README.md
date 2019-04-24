@@ -57,9 +57,15 @@ Lorsque l'exécution est terminée, cliquez sur le lien suivant : [http://127.0.
 
 ## Technologies utilisées
 
+### Liste des technologies
+
 * [Python](https://www.python.org/) - Langage utilisé
 * [Flask](http://flask.pocoo.org/) - Framework python utilisé pour développer des application web
 * [MongoDB](https://www.mongodb.com/) - Une base de données NoSql utilisée pour stocker les données
+
+### Architecture base de données MongoDB
+
+![alt text](https://raw.githubusercontent.com/Git-StevenP/Arcane_Immobilier/master/doc/rooms.JPG)
 
 ## Guide utilisateur
 
