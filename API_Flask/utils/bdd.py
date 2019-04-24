@@ -1,6 +1,7 @@
 from pymongo import MongoClient
 
 class MongoDB():
+    
     def __init__(self,dbname):
         self.client = MongoClient('localhost', 27017)
         self.db = self.client[dbname]
@@ -52,3 +53,7 @@ class MongoDB():
         reduce = Code("function(key, stuff) { return null; }")
         result = self.db[collection].map_reduce(map, reduce, "myresults")
         return result.distinct('_id')
+
+    def update_real_estate(self, real_estate_name, attr_key, attr_to_update):
+        real_estate_collection = self.db.biens_immobilier 
+        real_estate_collection.update({'name' : real_estate_name}, {'$set' : {attr_key :  attr_to_update}})
