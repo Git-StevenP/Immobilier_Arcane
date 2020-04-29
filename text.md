@@ -24,8 +24,7 @@ Knowledge of the building usage is a crucial element in the new dynamics of prop
     - [Creation of Prophet model](#creation-of-prophet-model)   
     - [Forecast cleaning](#forecast-cleaning)   
     - [Cluster forecast cleaning*](#cluster-forecast-cleaning)  
-    - [Work periods cleaning](#work-periods-cleaning)   
-    3.4 [Result](#result)   
+    - [Work periods cleaning](#work-periods-cleaning)
         
         
 ## Let's begin 
@@ -145,8 +144,5 @@ See below for illustration on floor T104:
 
 #### With work periods cleaning
 ![](API_Flask/doc/new_work_period.PNG)
-
-### Result
-The result file composed of every forecast for each building floor named final_result.csv is generated.
 
 ##### * : Only executed if a week clusterisation is possible
