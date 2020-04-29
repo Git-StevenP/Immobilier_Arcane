@@ -1,14 +1,15 @@
-# Immobilier_Arcane
+# Data science challenge : Predict building attendance
 
-Ce projet a été développé en tant qu'étude de cas durant la phase de recrutement d'Arcane. 
+This project has been developped for a Data Science challenge at ENGIE.
 
-# Problématique : 
-Dans le cadre d’un projet de création d’une application web de gestion immobilière, on nous demande de créer un ensemble de microservices. Ces microservices doivent permettre à un utilisateur de renseigner un bien immobilier avec les caractéristiques suivantes : nom, description, type de bien, ville, pièces, caractéristiques des pièces, propriétaire) et de consulter les autres biens disponibles sur la plateforme. 
+# Challenge : 
+Predict the attendance of T1 Tower one week in advance.
+Knowledge of the building usage is a crucial element in the new dynamics of property management and could allow progress on topics such as: space optimization, security, elevator maintenance...
 
 
 ## Table des matières
-1. [Débutons](#débutons)  
-    1.1 [Prérequis](#prérequis)  
+1. [Let's begin](#débutons)  
+    1.1 [Prerequisites](#prérequis)  
     1.2 [Installation et démarrage](#installation-et-démarrage)  
 2. [Technologies utilisées](#technologies-utilisées)    
     2.1 [Liste des Technologies](#liste-des-technologies)   
@@ -21,11 +22,11 @@ Dans le cadre d’un projet de création d’une application web de gestion immo
     3.5 [Page de modification d'un bien immobilier](#page-de-modification-dun-bien-immobilier)  
     3.6 [Page de modification du profil](#page-de-modification-du-profil)   
 
-## Débutons 
+## Let's begin 
 
 Suivez ces instructions afin de copier une version fonctionnelle du projet sur votre machine.
 
-### Prérequis
+### Prerequisites
 
 Tout d'abord, avant de vous lancer, vous aurez besoin d'installer mongo sur votre machine. Suivez donc le lien [suivant](https://www.mongodb.com/download-center/community) afin de procéder à l'installation.
 Vous aurez également besoin de télécharger sur votre machine les modules pymongo et wtforms de python avec les lignes de commande suivantes : 
