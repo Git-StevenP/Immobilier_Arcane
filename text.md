@@ -118,7 +118,7 @@ The core algorithm code is located here. Indeed, this is where the Prophet algor
 #### Forecast cleaning
 As the model is not really efficient to predict attendance during out of office periods such as night, weekends and holiday days, this part tends to correct the forecast during these periods by replacing the forecasts by the mean of real values during equivalent periods. This part also corrects negative forecasted values and uncertainty
 
-See below for illustration on floor T116:
+See below for illustration on floor T114:
 
 #### Without forecast cleaning
 ![](API_Flask/doc/without_clean_forecast.PNG)
