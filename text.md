@@ -29,7 +29,7 @@ Follow these instructions in order to get the project to work on your computer.
 ### Prerequisites
 
 First of all, you will need to install Python and Jupyter Notebook on your machine.
-You will also need to download the packages mentioned below with the associated command lines :
+You will also need to download and install the packages mentioned below with the associated command lines :
 
 ```bash
 $ pip install pandas
@@ -38,6 +38,7 @@ $ pip install pystan
 $ pip install plotly
 $ pip install fbprophet
 ```
+Note that we need to install pystan and plotly because fbprophet is using these two libraries.
 
 
 ### Installation 
