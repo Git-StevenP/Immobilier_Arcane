@@ -10,7 +10,7 @@ Knowledge of the building usage is a crucial element in the new dynamics of prop
 ## Table des matières
 1. [Let's begin](#lets-begin)  
     1.1 [Prerequisites](#prerequisites)  
-    1.2 [Installation](#installation)  
+    1.2 [Run](#run)  
 2. [Technologies used](#technologies-used)    
     2.1 [List of technologies](#list-of-technologies)   
     2.2 [Architecture base de données MongoDB](#architecture-base-de-données-mongodb)   
