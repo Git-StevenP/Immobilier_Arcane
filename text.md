@@ -64,10 +64,6 @@ Prophet is a procedure for forecasting time series data based on an additive mod
 
 Prophet is open source software released by Facebook’s Core Data Science team. It is available for download on CRAN and PyPI.
 
-![](API_Flask/doc/real_estate.JPG)
-
-![](API_Flask/doc/rooms.JPG)
-
 ## Algorithm
 
 ### Data preprocessing
