@@ -68,13 +68,13 @@ Prophet is open source software released by Facebook’s Core Data Science team.
 
 ### Data preprocessing
 The data has been preprocessed with the following steps:
-1) Train/Test datasets imports
-2) date and attendance(target) variables renamed to 'ds' and 'y' to fit with Prophet's use
-3) Addition of columns:
-    - week : the date week number
-    - on_holidays : specifies whether or not a date is part of the summer/christmas period which is considered to be from the 23rd of       December until the end of December and aswell the 3 first weeks of August
-    - off_holidays : exact opposite of the on_holidays boolean variable
-4) Addition of missing floors to training data : the missing floors are added based on their closeness with another not missing floor in terms of floor capacity. Exception for the T112 floor which will follow the T111 floor instead of the T104 (closest floor capacity).
+1) Train/Test datasets imports  
+2) date and attendance(target) variables renamed to 'ds' and 'y' to fit with Prophet's use  
+3) Addition of columns: 
+    - week : the date week number   
+    - on_holidays : specifies whether or not a date is part of the summer/christmas period which is considered to be from the 23rd of       December until the end of December and aswell the 3 first weeks of August   
+    - off_holidays : exact opposite of the on_holidays boolean variable 
+4) Addition of missing floors to training data : the missing floors are added based on their closeness with another not missing floor in terms of floor capacity. Exception for the T112 floor which will follow the T111 floor instead of the T104 (closest floor capacity).   
 
 
 ### Model
@@ -84,18 +84,18 @@ Once all the inner models and their forecast have been created, they are all joi
 
 ### Inner model
 A unique building floor is composed of several steps which can be summarised as (* will be processed if there's a possibility to create a week based cluster model) :
-1) [Merge of training and test dataframes](#trainingtest-merge)
-2) [Test of possible clusterisation](#test-of-clusterisation)
-3) [Creation of necessary columns for clusterisation*](#creation-of-necessary-columns-for-clusterisation)
-4) [Creation of Prophet model](#creation-of-prophet-model)
-    - Addition of saisonalities
-    - Addition of cluster saisonalities*
-    - Fit
-    - Predict
-5) [Forecast cleaning](#forecast-cleaning)
-6) [Cluster forecast cleaning*](#cluster-forecast-cleaning)
-7) [Work periods cleaning](#work-periods-cleaning)
-
+1) [Merge of training and test dataframes](#trainingtest-merge) 
+2) [Test of possible clusterisation](#test-of-clusterisation)   
+3) [Creation of necessary columns for clusterisation*](#creation-of-necessary-columns-for-clusterisation)   
+4) [Creation of Prophet model](#creation-of-prophet-model)  
+    - Addition of saisonalities 
+    - Addition of cluster saisonalities*    
+    - Fit   
+    - Predict   
+5) [Forecast cleaning](#forecast-cleaning)  
+6) [Cluster forecast cleaning*](#cluster-forecast-cleaning) 
+7) [Work periods cleaning](#work-periods-cleaning)  
+    
 #### Training/Test merge
 The training and test dataframes are merged because Prophet will detect the missing attendance values in the merged dataframe and forecast them
 
