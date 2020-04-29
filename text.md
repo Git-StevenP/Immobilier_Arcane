@@ -35,6 +35,7 @@ You will also need to download the packages mentioned below with the associated 
 $ pip install pandas
 $ pip install numpy
 $ pip install pystan
+$ pip install plotly
 $ pip install fbprophet
 ```
 
