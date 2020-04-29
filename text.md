@@ -105,9 +105,9 @@ Once all the inner models and their forecast have been created, they are all joi
 ### Inner model
 A unique building floor is composed of several steps which can be summarised as (* will be processed if there's a possibility to create a week based cluster model) :
 1) [Merge of training and test dataframes](#trainingtest-merge)
-2) Test of possible clusterisation
-3) Creation of necessary columns for clusterisation*
-4) Creation of Prophet model
+2) [Test of possible clusterisation](#test-of-clusterisation)
+3) [Creation of necessary columns for clusterisation*](#creation-of-necessary-columns-for-clusterisation*)
+4) [Creation of Prophet model](#creation-of-prophet-model)
     - Addition of saisonalities
     - Addition of cluster saisonalities*
     - Fit
@@ -120,10 +120,12 @@ A unique building floor is composed of several steps which can be summarised as 
 The training and test dataframes are merged because Prophet will detect the missing attendance values in the merged dataframe and forecast them
 
 #### Test of clusterisation
+Depending on the separability of the week mean attendances, this part will intent to detect them and to create week clusters in order to adapt the model for each group of "same" weeks. If the week mean attendances are not separable (close to each others), then there is no need for clusterisation and the model will not run the clusters parts (*)
 
-### Page de modification d'un bien immobilier
-Lorsque vous êtes l'utilisateur ayant ajouté le bien en question, vous pouvez cliquer sur ce bien dans la page d'accueil et arriver sur la page de modification. Au même titre que la page d'ajout, la page de modification comporte les différents champs précédement cités et permet de modifier le bien sélectionné.
+#### Creation of necessary columns for clusterisation*
+Adds cluster columns to the complete DataFrame for future model fit. The cluster columns are based on the precedent test of clusterisation which got several week attendance groups.
 
+#### Creation of Prophet model
+The core algorithm code is located here. Indeed, this is where the Prophet algorithm is used to predict attendance values with the following steps:
+    - 
 
-### Page de modification du profil
-La page de modification du profil comporte 3 champs correspondant au nom, prénom et date de naissance de l'utilisateur. Une fois ces champs remplis, vous pouvez valider afin d'ajouter/modifier ces différentes informations.
