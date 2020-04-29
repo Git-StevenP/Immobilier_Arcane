@@ -97,15 +97,29 @@ The data has been preprocessed with the following steps:
 4) Addition of missing floors to training data : the missing floors are added based on their closeness with another not missing floor in terms of floor capacity. Exception for the T112 floor which will follow the T111 floor instead of the T104 (closest floor capacity).
 
 
-### Page d'accueil
-Une fois connecté, la page d'accueil affiche le titre de la page, une barre de navigation comportant les différentes fonctionnalités ainsi qu'une barre de recherche et les biens déjà ajoutés dans la base de données.
-Lorsque vous avez déjà ajouté un bien avec cet utilisateur, vous pouvez observer votre bien en surbrillance et, ce faisant, cliquer dessus vous permettra d'accéder à la page de modification.
-Vous pouvez aussi utiliser la barre de recherche en tapant une ville afin d'uniquement afficher les biens se situant dans cette ville.
+### Model
+The complete model takes into account one model per building floor (36 models here).
+Once all the inner models and their forecast have been created, they are all joined together to form the final complete forecast which contains predictions of each building floor.
 
 
-### Page d'ajout d'un bien immobilier
-La page d'ajout présente différents champs correspondant aux nom, description, type de bien, ville, pièces, caractéristiques des pièces, propriétaire du bien immobilier. Une fois ces champs remplis et après avoir ajouté ou retiré des pièces, vous pouvez cliquer sur le bouton 'modifier' afin d'ajouter votre bien immobilier dans l'application.
+### Inner model
+A unique building floor is composed of several steps which can be summarised as (* will be processed if there's a possibility to create a week based cluster model) :
+1) [Merge of training and test dataframes](#trainingtest-merge)
+2) Test of possible clusterisation
+3) Creation of necessary columns for clusterisation*
+4) Creation of Prophet model
+    - Addition of saisonalities
+    - Addition of cluster saisonalities*
+    - Fit
+    - Predict
+5) Forecast cleaning
+6) Cluster forecast cleaning*
+7) Work periods cleaning
 
+#### Training/Test merge
+The training and test dataframes are merged because Prophet will detect the missing attendance values in the merged dataframe and forecast them
+
+#### Test of clusterisation
 
 ### Page de modification d'un bien immobilier
 Lorsque vous êtes l'utilisateur ayant ajouté le bien en question, vous pouvez cliquer sur ce bien dans la page d'accueil et arriver sur la page de modification. Au même titre que la page d'ajout, la page de modification comporte les différents champs précédement cités et permet de modifier le bien sélectionné.
