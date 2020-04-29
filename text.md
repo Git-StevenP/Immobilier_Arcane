@@ -106,11 +106,11 @@ Depending on the separability of the week mean attendances, this part will inten
 Adds cluster columns to the complete DataFrame for future model fit. The cluster columns are based on the precedent test of clusterisation which got several week attendance groups.
 
 #### Creation of Prophet model 
-The core algorithm code is located here. Indeed, this is where the Prophet algorithm is used to predict attendance values with the following steps:
-    - Addition of saisonalities : Prophet handles multi-saisonalities so two distinct weekly saisonalities are created: the first one       during the "summer/christmas" period and the other one during the rest of the year
-    - Addition of cluster saisonalities* : weekly saisonalities will also be added to the model for each existent week cluster. If a        cluster is part of a "on_holiday" saisonality, it will not be considered
-    - Fit : the Prophet model is fitted on whole data
-    - Predict : the Prophet model tries to forecast all the missing attendance values present in the whole data
+The core algorithm code is located here. Indeed, this is where the Prophet algorithm is used to predict attendance values with the following steps: 
+    - Addition of saisonalities : Prophet handles multi-saisonalities so two distinct weekly saisonalities are created: the first one       during the "summer/christmas" period and the other one during the rest of the year  
+    - Addition of cluster saisonalities* : weekly saisonalities will also be added to the model for each existent week cluster. If a        cluster is part of a "on_holiday" saisonality, it will not be considered    
+    - Fit : the Prophet model is fitted on whole data   
+    - Predict : the Prophet model tries to forecast all the missing attendance values present in the whole data 
 
 #### Forecast cleaning
 As the model is not really efficient to predict attendance during out of office periods such as night, weekends and holiday days, this part tends to correct the forecast during these periods by replacing the forecasts by the mean of real values during equivalent periods. This part also corrects negative forecasted values and uncertainty
