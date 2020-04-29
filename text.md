@@ -10,7 +10,7 @@ Knowledge of the building usage is a crucial element in the new dynamics of prop
 ## Table des matières
 1. [Let's begin](#lets-begin)  
     1.1 [Prerequisites](#prerequisites)  
-    1.2 [Installation et démarrage](#installation-et-démarrage)  
+    1.2 [Installation](#installation)  
 2. [Technologies utilisées](#technologies-utilisées)    
     2.1 [Liste des Technologies](#liste-des-technologies)   
     2.2 [Architecture base de données MongoDB](#architecture-base-de-données-mongodb)   
@@ -24,19 +24,21 @@ Knowledge of the building usage is a crucial element in the new dynamics of prop
 
 ## Let's begin 
 
-Suivez ces instructions afin de copier une version fonctionnelle du projet sur votre machine.
+Follow these instructions in order to get the project to work on your computer.
 
 ### Prerequisites
 
-Tout d'abord, avant de vous lancer, vous aurez besoin d'installer mongo sur votre machine. Suivez donc le lien [suivant](https://www.mongodb.com/download-center/community) afin de procéder à l'installation.
-Vous aurez également besoin de télécharger sur votre machine les modules pymongo et wtforms de python avec les lignes de commande suivantes : 
+First of all, you will need to install Python and Jupyter Notebook on your machine.
+You will also need to download the packages mentioned below with the associated command lines :
+
 ```bash
-$ pip install pymongo
-$ pip install wtforms
+$ pip install pandas
+$ pip install numpy
+$ pip install fbprophet
 ```
 
 
-### Installation et démarrage 
+### Installation 
 
 1) Placez-vous dans le repérertoire où vous souhaitez travailler sur le projet.
 2) Clonez le projet avec la commande suivante : 
