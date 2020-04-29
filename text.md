@@ -34,6 +34,7 @@ You will also need to download the packages mentioned below with the associated 
 ```bash
 $ pip install pandas
 $ pip install numpy
+$ pip install pystan
 $ pip install fbprophet
 ```
 
