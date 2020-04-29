@@ -122,4 +122,6 @@ If it has been possible to create week attendance clusters, the same [forecast c
 After a deep study of the data, we observe that some building floors are composed of "work periods" (periods during which almost no one is present at this floor). 
 Thus, this part intents to detect these periods and to correct the forecast by replacing by the mean of real values during equivalent periods which is based on the week mean of attendance.
 
-![](API_Flask/doc/real_estate.JPG)
+![](API_Flask/doc/old_work_period.JPG)
+
+![](API_Flask/doc/new_work_period.JPG)
