@@ -22,7 +22,7 @@ Knowledge of the building usage is a crucial element in the new dynamics of prop
     - [Test of possible clusterisation](#test-of-clusterisation)    
     - [Creation of necessary columns for clusterisation*](#creation-of-necessary-columns-for-clusterisation)    
     - [Creation of Prophet model](#creation-of-prophet-model)   
-    - [Forecast cleaning](#forecast-cleaning)   
+    - [Forecast cleaning](  #forecast-cleaning)   
     - [Cluster forecast cleaning*](#cluster-forecast-cleaning)  
     - [Work periods cleaning](#work-periods-cleaning)
         
@@ -103,7 +103,7 @@ The training and test dataframes are merged because Prophet will detect the miss
 Depending on the separability of the week mean attendances, this part will intent to detect them and to create week clusters in order to adapt the model for each group of "same" weeks. If the week mean attendances are not separable (close to each others), then there is no need for clusterisation and the model will not run the clusters parts (*)
 
 #### Example of week clusters on T105
-![](API_Flask/doc/week_clusters.PNG)
+![](API_Flask/doc/readme_pictures/week_clusters.PNG)
 
 Note that this week clusterisation has a strictness parameter which can be set. Here, after a deep study of each building floor and its attendance we decided to assign specific strictness parameter to some floors. Indeed, the more irregular the floor attendance was, the stricter the parameter had to be set.
 All the strictness parameters corresponding to each floors can be found in the "building_floor_study.docx" file. 
@@ -114,7 +114,7 @@ Adds cluster columns to the complete DataFrame for future model fit. The cluster
 #### Creation of Prophet model 
 The core algorithm code is located here. Indeed, this is where the Prophet algorithm is used to predict attendance values with the following steps:     
 - Addition of saisonalities : Prophet handles multi-saisonalities so two distinct weekly saisonalities are created: the first one       during the "summer/christmas" period and the other one during the rest of the year  
-    ![](API_Flask/doc/saisonalities.PNG)   
+    ![](API_Flask/doc/readme_pictures/saisonalities.PNG)   
 - Addition of cluster saisonalities* : weekly saisonalities will also be added to the model for each existent week cluster. If a        cluster is part of a "on_holiday" saisonality, it will not be considered    
 - Fit : the Prophet model is fitted on whole data   
 - Predict : the Prophet model tries to forecast all the missing attendance values present in the whole data 
@@ -125,10 +125,10 @@ As the model is not really efficient to predict attendance during out of office 
 See below for illustration on floor T114:
 
 #### Without forecast cleaning
-![](API_Flask/doc/without_clean_forecast.PNG)
+![](API_Flask/doc/readme_pictures/without_clean_forecast.PNG)
 
 #### With forecast cleaning
-![](API_Flask/doc/with_clean_forecast.PNG)
+![](API_Flask/doc/readme_pictures/with_clean_forecast.PNG)
 
 #### Cluster forecast cleaning*
 If it has been possible to create week attendance clusters, the same [forecast cleaning](#forecast-cleaning) mentioned above is applied inside these different clusters such as the mean correction is correct during these special periods.
@@ -140,9 +140,9 @@ Thus, this part intents to detect these periods and to correct the forecast by r
 See below for illustration on floor T104:
 
 #### Without work periods cleaning
-![](API_Flask/doc/old_work_period.PNG)
+![](API_Flask/doc/readme_pictures/old_work_period.PNG)
 
 #### With work periods cleaning
-![](API_Flask/doc/new_work_period.PNG)
+![](API_Flask/doc/readme_pictures/new_work_period.PNG)
 
 ##### * : Only executed if a week clusterisation is possible
