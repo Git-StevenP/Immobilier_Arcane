@@ -105,6 +105,9 @@ Depending on the separability of the week mean attendances, this part will inten
 #### Example of week clusters on T105
 ![](API_Flask/doc/week_clusters.PNG)
 
+Note that this week clusterisation has a strictness parameter which can be set. Here, after a deep study of each building floor and its attendance we decided to assign specific strictness parameter to some floors. Indeed, the more irregular the floor attendance was, the stricter the parameter had to be set.
+All the strictness parameters corresponding to each floors can be found in the "building_floor_study.docx" file. 
+
 #### Creation of necessary columns for clusterisation*
 Adds cluster columns to the complete DataFrame for future model fit. The cluster columns are based on the precedent test of clusterisation which got several week attendance groups.
 
