@@ -11,8 +11,8 @@ Knowledge of the building usage is a crucial element in the new dynamics of prop
 1. [Let's begin](#lets-begin)  
     1.1 [Prerequisites](#prerequisites)  
     1.2 [Installation](#installation)  
-2. [Technologies utilisées](#technologies-utilisées)    
-    2.1 [Liste des Technologies](#liste-des-technologies)   
+2. [Technologies used](#technologies-used)    
+    2.1 [List of technologies](#list-of-technologies)   
     2.2 [Architecture base de données MongoDB](#architecture-base-de-données-mongodb)   
 3. [Guide utilisateur](#guide-utilisateur)  
     3.1 [Fonctionnalités](#fonctionnalités)     
@@ -41,35 +41,18 @@ $ pip install fbprophet
 Note that we need to install pystan and plotly because fbprophet is using these two libraries.
 
 
-### Installation 
+### Run 
 
-1) Placez-vous dans le repérertoire où vous souhaitez travailler sur le projet.
-2) Clonez le projet avec la commande suivante : 
+1) Go to the jupyter notebook file named "Predict_building_attendance_final" and open it
+2) Select "Cell" tab and then "Run all"
+3) The algorithm will run and create the result file named "final_result.csv"
 
-```bash
-$ git clone https://github.com/Git-StevenP/Immobilier_Arcane.git
-```
+## Technologies used
 
-Allez dans le repository :
-```bash
-$ cd API_Flask/
-```
-
-Enfin, il  vous suffit  d'exécuter la commande suivante : 
-```bash
-$ python run.py
-```
-
-Une fois que l'application a fini de se lancer vous pourrez l'utiliser dans votre moteur de recherche.
-Lorsque l'exécution est terminée, cliquez sur le lien suivant : [http://127.0.0.1:2745/](http://127.0.0.1:2745/)
-
-## Technologies utilisées
-
-### Liste des technologies
+### List of technologies
 
 * [Python](https://www.python.org/) - Langage utilisé
-* [Flask](http://flask.pocoo.org/) - Framework python utilisé pour développer des application web
-* [MongoDB](https://www.mongodb.com/) - Une base de données NoSql utilisée pour stocker les données
+* [Prophet](https://facebook.github.io/prophet/) - Open sourced machine learning algorithm created by Facebook
 
 ### Architecture base de données MongoDB
 
@@ -95,7 +78,7 @@ La partie comportant les pièces d'un bien est composée ainsi où où chaque pi
 
 ![](API_Flask/doc/rooms.JPG)
 
-## Guide utilisateur
+## Algorithm
 
 ### Fonctionnalités
 
