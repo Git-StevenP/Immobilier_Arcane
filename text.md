@@ -124,4 +124,5 @@ Thus, this part intents to detect these periods and to correct the forecast by r
 
 ![](API_Flask/doc/old_work_period.PNG)
 
+
 ![](API_Flask/doc/new_work_period.PNG)
