@@ -8,8 +8,8 @@ Knowledge of the building usage is a crucial element in the new dynamics of prop
 
 
 ## Table des matières
-1. [Let's begin](#débutons)  
-    1.1 [Prerequisites](#prérequis)  
+1. [Let's begin](#lets-begin)  
+    1.1 [Prerequisites](#prerequisites)  
     1.2 [Installation et démarrage](#installation-et-démarrage)  
 2. [Technologies utilisées](#technologies-utilisées)    
     2.1 [Liste des Technologies](#liste-des-technologies)   
