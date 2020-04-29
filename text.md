@@ -88,10 +88,10 @@ A unique building floor is composed of several steps which can be summarised as 
 2) [Test of possible clusterisation](#test-of-clusterisation)   
 3) [Creation of necessary columns for clusterisation*](#creation-of-necessary-columns-for-clusterisation)   
 4) [Creation of Prophet model](#creation-of-prophet-model)  
-    - Addition of saisonalities 
-    - Addition of cluster saisonalities*    
-    - Fit   
-    - Predict   
+    - [Addition of saisonalities](#creation-of-prophet-model)    
+    - [Addition of cluster saisonalities*](#creation-of-prophet-model)     
+    - [Fit](#fit)  
+    - [Predict](#creation-of-prophet-model)  
 5) [Forecast cleaning](#forecast-cleaning)  
 6) [Cluster forecast cleaning*](#cluster-forecast-cleaning) 
 7) [Work periods cleaning](#work-periods-cleaning)  
