@@ -102,6 +102,9 @@ The training and test dataframes are merged because Prophet will detect the miss
 #### Test of clusterisation
 Depending on the separability of the week mean attendances, this part will intent to detect them and to create week clusters in order to adapt the model for each group of "same" weeks. If the week mean attendances are not separable (close to each others), then there is no need for clusterisation and the model will not run the clusters parts (*)
 
+#### Example of week clusters on T105
+![](API_Flask/doc/week_clusters.PNG)
+
 #### Creation of necessary columns for clusterisation*
 Adds cluster columns to the complete DataFrame for future model fit. The cluster columns are based on the precedent test of clusterisation which got several week attendance groups.
 
@@ -114,6 +117,14 @@ The core algorithm code is located here. Indeed, this is where the Prophet algor
 
 #### Forecast cleaning
 As the model is not really efficient to predict attendance during out of office periods such as night, weekends and holiday days, this part tends to correct the forecast during these periods by replacing the forecasts by the mean of real values during equivalent periods. This part also corrects negative forecasted values and uncertainty
+
+See below for illustration on floor T116:
+
+#### Without forecast cleaning
+![](API_Flask/doc/without_clean_forecast.PNG)
+
+#### With forecast cleaning
+![](API_Flask/doc/with_clean_forecast.PNG)
 
 #### Cluster forecast cleaning*
 If it has been possible to create week attendance clusters, the same [forecast cleaning](#forecast-cleaning) mentioned above is applied inside these different clusters such as the mean correction is correct during these special periods.
