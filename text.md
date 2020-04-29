@@ -13,12 +13,11 @@ Knowledge of the building usage is a crucial element in the new dynamics of prop
     1.2 [Run](#run)  
 2. [Technologies used](#technologies-used)    
     2.1 [List of technologies](#list-of-technologies)   
-    2.2 [Architecture base de données MongoDB](#architecture-base-de-données-mongodb)   
-3. [Algorithm](#algorithm)  
-    3.1 [Prophet presentation](#prophet-presentation)     
-    3.2 [Data preprocessing](#data-preprocessing)  
-    3.3 [Model](#model)    
-    3.4 [Inner model](#inner-model)     
+    2.2 [Prophet presentation](#prophet-presentation)  
+3. [Algorithm](#algorithm)    
+    3.1 [Data preprocessing](#data-preprocessing)  
+    3.2 [Model](#model)    
+    3.3 [Inner model](#inner-model)     
     - [Merge of training and test dataframes](#trainingtest-merge)  
     - [Test of possible clusterisation](#test-of-clusterisation)    
     - [Creation of necessary columns for clusterisation*](#creation-of-necessary-columns-for-clusterisation)    
@@ -60,37 +59,16 @@ Note that we need to install pystan and plotly because fbprophet is using these 
 * [Python](https://www.python.org/) - Langage utilisé
 * [Prophet](https://facebook.github.io/prophet/) - Open sourced machine learning algorithm created by Facebook
 
-### Architecture base de données MongoDB
-
-La base de données est composée de trois collections : users, biens_immobiliers et enfin room_number
-
-La première collection sert à stocker les différents utilisateurs de l'application à l'aide de leur nom de compte et de leur mot de passe. A noter que la fonctionnalité [Modification du profil](#page-de-modification-du-profil) permet d'ajouter des informations à cet utilisateur telles que son nom, son prénom, ou encore sa date de naissance.
-
-La deuxième collection sert à stocker les différents biens immobiliers présents dans l'application. Celle-ci est composée ainsi : 
-- name : le nom du bien immobilier
-- description : la description du bien immobilier
-- type : le type de bien immobilier (maison, appartement, villa)
-- city : la ville dans laquelle se situe le bien immobilier
-- rooms : les pièces et leurs différentes caractéristiques (détaillées plus bas)
-- owner : le propriétaire du bien immobilier
-- property : l'utilisateur ayant ajouté le bien immobilier sur la plateforme
-
-![](API_Flask/doc/real_estate.JPG)
-
-La partie comportant les pièces d'un bien est composée ainsi où où chaque pièce est composée de 3 variables :
-- room_type : le type de pièce (WC, bedroom, bathroom, garden...)
-- room_area : la surface de la pièce (en mètres carrés)
-- room_furniture : la pièce est meublée (oui ou non)
-
-![](API_Flask/doc/rooms.JPG)
-
-## Algorithm
-
 ### Prophet presentation
 Prophet is a procedure for forecasting time series data based on an additive model where non-linear trends are fit with yearly, weekly, and daily seasonality, plus holiday effects. It works best with time series that have strong seasonal effects and several seasons of historical data. Prophet is robust to missing data and shifts in the trend, and typically handles outliers well.
 
 Prophet is open source software released by Facebook’s Core Data Science team. It is available for download on CRAN and PyPI.
 
+![](API_Flask/doc/real_estate.JPG)
+
+![](API_Flask/doc/rooms.JPG)
+
+## Algorithm
 
 ### Data preprocessing
 The data has been preprocessed with the following steps:
