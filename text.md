@@ -106,7 +106,7 @@ Once all the inner models and their forecast have been created, they are all joi
 A unique building floor is composed of several steps which can be summarised as (* will be processed if there's a possibility to create a week based cluster model) :
 1) [Merge of training and test dataframes](#trainingtest-merge)
 2) [Test of possible clusterisation](#test-of-clusterisation)
-3) [Creation of necessary columns for clusterisation*](#creation-of-necessary-columns-for-clusterisation*)
+3) [Creation of necessary columns for clusterisation*](#creation-of-necessary-columns-for-clusterisation)
 4) [Creation of Prophet model](#creation-of-prophet-model)
     - Addition of saisonalities
     - Addition of cluster saisonalities*
