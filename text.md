@@ -17,10 +17,8 @@ Knowledge of the building usage is a crucial element in the new dynamics of prop
 3. [Algorithm](#algorithm)  
     3.1 [Prophet presentation](#prophet-presentation)     
     3.2 [Data preprocessing](#data-preprocessing)  
-    3.3 [Page d'accueil](#page-daccueil)    
-    3.4 [Page d'ajout d'un bien immobilier](#page-dajout-dun-bien-immobilier)   
-    3.5 [Page de modification d'un bien immobilier](#page-de-modification-dun-bien-immobilier)  
-    3.6 [Page de modification du profil](#page-de-modification-du-profil)   
+    3.3 [Model](#model)    
+    3.4 [Inner model](#inner-model)
 
 ## Let's begin 
 
@@ -112,9 +110,9 @@ A unique building floor is composed of several steps which can be summarised as 
     - Addition of cluster saisonalities*
     - Fit
     - Predict
-5) Forecast cleaning
-6) Cluster forecast cleaning*
-7) Work periods cleaning
+5) [Forecast cleaning](#forecast-cleaning)
+6) [Cluster forecast cleaning*](#cluster-forecast-cleaning)
+7) [Work periods cleaning](#work-periods-cleaning)
 
 #### Training/Test merge
 The training and test dataframes are merged because Prophet will detect the missing attendance values in the merged dataframe and forecast them
@@ -125,7 +123,19 @@ Depending on the separability of the week mean attendances, this part will inten
 #### Creation of necessary columns for clusterisation*
 Adds cluster columns to the complete DataFrame for future model fit. The cluster columns are based on the precedent test of clusterisation which got several week attendance groups.
 
-#### Creation of Prophet model
+#### Creation of Prophet model 
 The core algorithm code is located here. Indeed, this is where the Prophet algorithm is used to predict attendance values with the following steps:
-    - 
+    - Addition of saisonalities : Prophet handles multi-saisonalities so two distinct weekly saisonalities are created: the first one       during the "summer/christmas" period and the other one during the rest of the year
+    - Addition of cluster saisonalities* : weekly saisonalities will also be added to the model for each existent week cluster. If a        cluster is part of a "on_holiday" saisonality, it will not be considered
+    - Fit : the Prophet model is fitted on whole data
+    - Predict : the Prophet model tries to forecast all the missing attendance values present in the whole data
 
+#### Forecast cleaning
+As the model is not really efficient to predict attendance during out of office periods such as night, weekends and holiday days, this part tends to correct the forecast during these periods by replacing the forecasts by the mean of real values during equivalent periods. This part also corrects negative forecasted values and uncertainty
+
+#### Cluster forecast cleaning*
+If it has been possible to create week attendance clusters, the same [forecast cleaning](#forecast-cleaning) mentioned above is applied inside these different clusters such as the mean correction is correct during these special periods.
+
+#### Work periods cleaning
+After a deep study of the data, we observe that some building floors are composed of "work periods" (periods during which almost no one is present at this floor). 
+Thus, this part intents to detect these periods and to correct the forecast by replacing by the mean of real values during equivalent periods which is based on the week mean of attendance.
