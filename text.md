@@ -14,9 +14,9 @@ Knowledge of the building usage is a crucial element in the new dynamics of prop
 2. [Technologies used](#technologies-used)    
     2.1 [List of technologies](#list-of-technologies)   
     2.2 [Architecture base de données MongoDB](#architecture-base-de-données-mongodb)   
-3. [Guide utilisateur](#guide-utilisateur)  
-    3.1 [Fonctionnalités](#fonctionnalités)     
-    3.2 [Page de connexion/inscription](#page-de-connexioninscription)  
+3. [Algorithm](#algorithm)  
+    3.1 [Prophet presentation](#prophet-presentation)     
+    3.2 [Data preprocessing](#data-preprocessing)  
     3.3 [Page d'accueil](#page-daccueil)    
     3.4 [Page d'ajout d'un bien immobilier](#page-dajout-dun-bien-immobilier)   
     3.5 [Page de modification d'un bien immobilier](#page-de-modification-dun-bien-immobilier)  
@@ -80,16 +80,21 @@ La partie comportant les pièces d'un bien est composée ainsi où où chaque pi
 
 ## Algorithm
 
-### Fonctionnalités
+### Prophet presentation
+Prophet is a procedure for forecasting time series data based on an additive model where non-linear trends are fit with yearly, weekly, and daily seasonality, plus holiday effects. It works best with time series that have strong seasonal effects and several seasons of historical data. Prophet is robust to missing data and shifts in the trend, and typically handles outliers well.
 
-1) Un utilisateur peut modifier les caractéristiques d’un bien (changer le nom, ajouter une pièce, etc… )
-2) Les utilisateurs peuvent renseigner/ modifier leurs informations personnelles sur la plateforme (nom, prénom, date de naissance)
-3) Les utilisateurs peuvent consulter uniquement les biens d’une ville particulière
-4) Fonctionnalité bonus : Un propriétaire ne peut modifier que les caractéristiques de son bien sans avoir accès à l’édition des autres biens.
+Prophet is open source software released by Facebook’s Core Data Science team. It is available for download on CRAN and PyPI.
 
 
-### Page de connexion/inscription
-La page de connexion permet de se connecter ou de s'inscrire dans l'application. Celle-ci permettra donc la création d'un compte et la mémorisation de celui-ci avec votre mot de passe et vos biens immobiliers précédemment créés.
+### Data preprocessing
+The data has been preprocessed with the following steps:
+1) Train/Test datasets imports
+2) date and attendance(target) variables renamed to 'ds' and 'y' to fit with Prophet's use
+3) Addition of columns:
+    - week : the date week number
+    - on_holidays : specifies whether or not a date is part of the summer/christmas period which is considered to be from the 23rd of       December until the end of December and aswell the 3 first weeks of August
+    - off_holidays : exact opposite of the on_holidays boolean variable
+4) Addition of missing floors to training data : the missing floors are added based on their closeness with another not missing floor in terms of floor capacity. Exception for the T112 floor which will follow the T111 floor instead of the T104 (closest floor capacity).
 
 
 ### Page d'accueil
