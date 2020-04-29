@@ -18,7 +18,7 @@ Knowledge of the building usage is a crucial element in the new dynamics of prop
     3.1 [Prophet presentation](#prophet-presentation)     
     3.2 [Data preprocessing](#data-preprocessing)  
     3.3 [Model](#model)    
-    3.4 [Inner model](#inner-model)
+    3.4 [Inner model](#inner-model) 
         3.4.1 [Merge of training and test dataframes](#trainingtest-merge)  
         3.4.2 [Test of possible clusterisation](#test-of-clusterisation)    
         3.4.3 [Creation of necessary columns for clusterisation*](#creation-of-necessary-columns-for-clusterisation)    
