@@ -121,10 +121,10 @@ As the model is not really efficient to predict attendance during out of office 
 
 See below for illustration on floor T114:
 
-Without forecast cleaning
+#### Without forecast cleaning
 ![](API_Flask/doc/without_clean_forecast.PNG)
 
-With forecast cleaning
+#### With forecast cleaning
 ![](API_Flask/doc/with_clean_forecast.PNG)
 
 #### Cluster forecast cleaning*
