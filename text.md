@@ -19,7 +19,15 @@ Knowledge of the building usage is a crucial element in the new dynamics of prop
     3.2 [Data preprocessing](#data-preprocessing)  
     3.3 [Model](#model)    
     3.4 [Inner model](#inner-model)
-
+        3.4.1 [Merge of training and test dataframes](#trainingtest-merge)
+        3.4.2 [Test of possible clusterisation](#test-of-clusterisation)
+        3.4.3 [Creation of necessary columns for clusterisation*](#creation-of-necessary-columns-for-clusterisation)
+        3.4.4 [Creation of Prophet model](#creation-of-prophet-model)
+        3.4.5 [Forecast cleaning](#forecast-cleaning)
+        3.4.6 [Cluster forecast cleaning*](#cluster-forecast-cleaning)
+        3.4.7 [Work periods cleaning](#work-periods-cleaning)
+        
+        
 ## Let's begin 
 
 Follow these instructions in order to get the project to work on your computer.
