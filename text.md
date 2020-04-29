@@ -141,3 +141,5 @@ See below for illustration on floor T104:
 
 #### With work periods cleaning
 ![](API_Flask/doc/new_work_period.PNG)
+
+##### * : Only executed if a week clusterisation is possible
